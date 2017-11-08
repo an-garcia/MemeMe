@@ -13,6 +13,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: Outlets
     @IBOutlet weak var ImagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var textTop: UITextField!
+    @IBOutlet weak var textBotton : UITextField!
     // MARK: Memeber variables
     
     
@@ -22,6 +24,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // disable camera button if it's not available
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        textTop.text = "TOP"
+        textTop.textAlignment = .center
+        textBotton.text = "BOTTOM"
+        textBotton.textAlignment = .center
     }
 
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
