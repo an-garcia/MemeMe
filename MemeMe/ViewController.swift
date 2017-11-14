@@ -18,6 +18,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: Memeber variables
     let editTopDelegate = EditTextFieldDelegate()
     let editBottomDelegate = EditTextFieldDelegate()
+    var meme: Meme = Meme()
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +104,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.ImagePickerView.contentMode = .center // scale type
         self.ImagePickerView.image = chosenImage // set image to view
         dismiss(animated:true, completion: nil) // dismiss dialog
+        
+        // save the meme
+        save()
     }
     
     
@@ -114,6 +118,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.cameraCaptureMode = .photo
         imagePicker.modalPresentationStyle = .fullScreen
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // MARK: Initialize a Meme object
+    func save() {
+        
+        let memedImage = generateMemedImage()
+        // Create the meme
+        self.meme = Meme(topText: textTop.text!, bottomText: textBotton.text!, originalImage: ImagePickerView.image!, memedImage: memedImage)
+    }
+    
+
+    func generateMemedImage() -> UIImage {
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return memedImage
     }
 
 }
