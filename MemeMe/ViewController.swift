@@ -15,6 +15,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var textTop: UITextField!
     @IBOutlet weak var textBotton : UITextField!
+    @IBOutlet weak var toolBar: UIToolbar!
+    
     // MARK: Memeber variables
     let editTopDelegate = EditTextFieldDelegate()
     let editBottomDelegate = EditTextFieldDelegate()
@@ -131,11 +133,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     func generateMemedImage() -> UIImage {
         
+        // TODO: Hide toolbar and navbar
+        self.toolBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = true
+        
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        
+        // TODO: Show toolbar and navbar
+        self.toolBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         
         return memedImage
     }

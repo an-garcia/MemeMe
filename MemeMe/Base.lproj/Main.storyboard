@@ -80,6 +80,7 @@
                         <outlet property="cameraButton" destination="LoL-nG-gr0" id="jSS-xU-kke"/>
                         <outlet property="textBotton" destination="jO0-T6-0LG" id="cJG-ME-aiH"/>
                         <outlet property="textTop" destination="RUD-mH-tyQ" id="ckD-xD-tAG"/>
+                        <outlet property="toolBar" destination="Qqn-ui-d1M" id="S85-Of-B2q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
