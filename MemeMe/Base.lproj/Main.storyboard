@@ -69,6 +69,11 @@
                                             <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="SsO-tG-gnr"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Share" id="Jkf-6G-Oc1" userLabel="Share">
+                                        <connections>
+                                            <action selector="shareMeme:" destination="BYZ-38-t0r" id="IH7-Gh-EiT"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -78,6 +83,7 @@
                     <connections>
                         <outlet property="ImagePickerView" destination="GG3-Dy-SKR" id="gf2-HB-Qxa"/>
                         <outlet property="cameraButton" destination="LoL-nG-gr0" id="jSS-xU-kke"/>
+                        <outlet property="shareButton" destination="Jkf-6G-Oc1" id="y1G-An-NoO"/>
                         <outlet property="textBotton" destination="jO0-T6-0LG" id="cJG-ME-aiH"/>
                         <outlet property="textTop" destination="RUD-mH-tyQ" id="ckD-xD-tAG"/>
                         <outlet property="toolBar" destination="Qqn-ui-d1M" id="S85-Of-B2q"/>

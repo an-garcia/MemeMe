@@ -1,7 +1,7 @@
 # MemeMe
 
 
-![Scheme](/screenshots/SimulatorScreenShot-iPhone8Plus-2017-11-07at16.50.01.png)
+![Scheme](/screenshots/SimulatorScreenShot-iPhone8Plus-2017-11-14at10.02.00.png)
 
 
 MemeMe is an iOS sample application that lets the user select an image and write some text.

@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: Outlets
     @IBOutlet weak var ImagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton : UIBarButtonItem!
     @IBOutlet weak var textTop: UITextField!
     @IBOutlet weak var textBotton : UITextField!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -64,6 +65,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // disable camera button if it's not available
         self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        // disable the share button if there it's no image
+        self.shareButton.isEnabled = false
         
         // set text fields
         let memeTextAttributes:[String:Any] = [
@@ -107,8 +110,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.ImagePickerView.image = chosenImage // set image to view
         dismiss(animated:true, completion: nil) // dismiss dialog
         
-        // save the meme
-        save()
+        // enable the share button
+        self.shareButton.isEnabled = true
     }
     
     
@@ -148,6 +151,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.navigationController?.isNavigationBarHidden = false
         
         return memedImage
+    }
+    
+    
+    // MARK: Share Meme
+    @IBAction func shareMeme(_ sender: Any) {
+        // save the meme
+        save()
+        // save meme image to photo library
+        UIImageWriteToSavedPhotosAlbum(self.meme.memedImage!, self, #selector(addImageToLibrary(_:didFinishSavingWithError:contextInfo:)), nil)
+        
+    }
+    
+    
+    //MARK: - Add image to Library
+    @objc func addImageToLibrary(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
     }
 
 }
